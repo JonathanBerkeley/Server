@@ -1,0 +1,13 @@
+C:\Users\mainuser\Desktop\dev\unity\Server\GameDevCAServer\GameDevCAServer\bin\Debug\netcoreapp3.1\GameDevCAServer.exe
+C:\Users\mainuser\Desktop\dev\unity\Server\GameDevCAServer\GameDevCAServer\bin\Debug\netcoreapp3.1\GameDevCAServer.deps.json
+C:\Users\mainuser\Desktop\dev\unity\Server\GameDevCAServer\GameDevCAServer\bin\Debug\netcoreapp3.1\GameDevCAServer.runtimeconfig.json
+C:\Users\mainuser\Desktop\dev\unity\Server\GameDevCAServer\GameDevCAServer\bin\Debug\netcoreapp3.1\GameDevCAServer.runtimeconfig.dev.json
+C:\Users\mainuser\Desktop\dev\unity\Server\GameDevCAServer\GameDevCAServer\bin\Debug\netcoreapp3.1\GameDevCAServer.dll
+C:\Users\mainuser\Desktop\dev\unity\Server\GameDevCAServer\GameDevCAServer\bin\Debug\netcoreapp3.1\GameDevCAServer.pdb
+C:\Users\mainuser\Desktop\dev\unity\Server\GameDevCAServer\GameDevCAServer\obj\Debug\netcoreapp3.1\GameDevCAServer.csprojAssemblyReference.cache
+C:\Users\mainuser\Desktop\dev\unity\Server\GameDevCAServer\GameDevCAServer\obj\Debug\netcoreapp3.1\GameDevCAServer.AssemblyInfoInputs.cache
+C:\Users\mainuser\Desktop\dev\unity\Server\GameDevCAServer\GameDevCAServer\obj\Debug\netcoreapp3.1\GameDevCAServer.AssemblyInfo.cs
+C:\Users\mainuser\Desktop\dev\unity\Server\GameDevCAServer\GameDevCAServer\obj\Debug\netcoreapp3.1\GameDevCAServer.csproj.CoreCompileInputs.cache
+C:\Users\mainuser\Desktop\dev\unity\Server\GameDevCAServer\GameDevCAServer\obj\Debug\netcoreapp3.1\GameDevCAServer.dll
+C:\Users\mainuser\Desktop\dev\unity\Server\GameDevCAServer\GameDevCAServer\obj\Debug\netcoreapp3.1\GameDevCAServer.pdb
+C:\Users\mainuser\Desktop\dev\unity\Server\GameDevCAServer\GameDevCAServer\obj\Debug\netcoreapp3.1\GameDevCAServer.genruntimeconfig.cache
