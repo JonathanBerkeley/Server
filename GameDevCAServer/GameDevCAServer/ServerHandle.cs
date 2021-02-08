@@ -32,6 +32,7 @@ namespace GameDevCAServer
             ServerSend.PlayerRotation(_fromClient, _playerRotation);
         }
 
+        /*
         public static void ProjectileData(int _fromClient, Packet _packet)
         {
             Vector3 _projectileLocation = _packet.ReadVector3();
@@ -39,6 +40,7 @@ namespace GameDevCAServer
 
             ServerSend.ProjectileData(_fromClient, _projectileLocation, _projectileRotation);
         }
+        */
 
         /* For testing UDP
         public static void UDPTestReceived (int _fromClient, Packet _packet)

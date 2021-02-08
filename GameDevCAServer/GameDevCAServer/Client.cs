@@ -187,7 +187,7 @@ namespace GameDevCAServer
             }
         }
 
-        public void SendIntoGame(String _playerName)
+        public void SendIntoGame(string _playerName)
         {
             player = new Player(id, _playerName, new Vector3(0, 0, 0));
 

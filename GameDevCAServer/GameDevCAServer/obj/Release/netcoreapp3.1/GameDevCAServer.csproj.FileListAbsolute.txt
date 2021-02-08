@@ -36,3 +36,4 @@ C:\Users\mainuser\Desktop\dev\unity\FinalGameDevCA\ca1_fps_unity-JonathanBerkele
 C:\Users\mainuser\Desktop\dev\unity\FinalGameDevCA\ca1_fps_unity-JonathanBerkeley\src\Server\GameDevCAServer\GameDevCAServer\obj\Release\netcoreapp3.1\GameDevCAServer.dll
 C:\Users\mainuser\Desktop\dev\unity\FinalGameDevCA\ca1_fps_unity-JonathanBerkeley\src\Server\GameDevCAServer\GameDevCAServer\obj\Release\netcoreapp3.1\GameDevCAServer.pdb
 C:\Users\mainuser\Desktop\dev\unity\FinalGameDevCA\ca1_fps_unity-JonathanBerkeley\src\Server\GameDevCAServer\GameDevCAServer\obj\Release\netcoreapp3.1\GameDevCAServer.genruntimeconfig.cache
+C:\Users\mainuser\Desktop\dev\unity\Server\GameDevCAServer\GameDevCAServer\obj\Release\netcoreapp3.1\GameDevCAServer.csproj.CoreCompileInputs.cache

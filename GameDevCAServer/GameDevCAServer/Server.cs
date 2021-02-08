@@ -26,7 +26,7 @@ namespace GameDevCAServer
 
             tcpListener = new TcpListener(IPAddress.Any, Port);
             tcpListener.Start();
-            tcpListener.BeginAcceptTcpClient(new AsyncCallback(TCPConnectCallback), null);
+            tcpListener.BeginAcceptTcpClient(TCPConnectCallback, null);
 
             udpListener = new UdpClient(Port);
             udpListener.BeginReceive(UDPReceiveCallback, null);
@@ -37,7 +37,7 @@ namespace GameDevCAServer
         private static void TCPConnectCallback(IAsyncResult _result)
         {
             TcpClient _client = tcpListener.EndAcceptTcpClient(_result);
-            tcpListener.BeginAcceptTcpClient(new AsyncCallback(TCPConnectCallback), null);
+            tcpListener.BeginAcceptTcpClient(TCPConnectCallback, null);
             Console.WriteLine($"Incoming connection from: {_client.Client.RemoteEndPoint}");
 
             for (int i = 1; i <= MaxPlayers; ++i)
@@ -69,7 +69,7 @@ namespace GameDevCAServer
                 {
                     int _clientId = _packet.ReadInt();
                     
-                    //Client ID should never be 0, attempting 0 would crash the 0 so check done here
+                    //Client ID should never be 0, attempting 0 would crash server
                     if (_clientId == 0)
                     {
                         return;
@@ -118,7 +118,7 @@ namespace GameDevCAServer
             {
                 { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
                 { (int)ClientPackets.playerData, ServerHandle.PlayerData },
-                { (int)ClientPackets.projectileData, ServerHandle.ProjectileData }
+                //{ (int)ClientPackets.projectileData, ServerHandle.ProjectileData }
 
                 //{ (int)ClientPackets.udpTestReceived, ServerHandle.UDPTestReceived }
             };
