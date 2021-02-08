@@ -22,7 +22,7 @@ namespace GameDevCAServer
         private static void SendTCPDataToAll(Packet _packet)
         {
             _packet.WriteLength();
-            for (int i = 0; i <= Server.MaxPlayers; ++i)
+            for (int i = 1; i <= Server.MaxPlayers; ++i)
             {
                 Server.clients[i].tcp.SendData(_packet);
             }
@@ -30,7 +30,7 @@ namespace GameDevCAServer
         private static void SendTCPDataToAll(int _exceptClient, Packet _packet)
         {
             _packet.WriteLength();
-            for (int i = 0; i <= Server.MaxPlayers; ++i)
+            for (int i = 1; i <= Server.MaxPlayers; ++i)
             {
                 if (i != _exceptClient)
                 {
@@ -49,6 +49,7 @@ namespace GameDevCAServer
         }
         private static void SendUDPDataToAll(int _exceptClient, Packet _packet)
         {
+            Console.WriteLine($"SendUDPDataToAll -- _exceptClient: {_exceptClient}, _packet: {_packet}");
             _packet.WriteLength();
             for (int i = 1; i <= Server.MaxPlayers; ++i)
             {
@@ -85,6 +86,7 @@ namespace GameDevCAServer
 
         public static void SpawnPlayer(int _toClient, Player _player)
         {
+            Console.WriteLine($"SpawnPlayer -- _toClient: {_toClient}, _player: {_player}");
             using (Packet _packet = new Packet((int)ServerPackets.spawnPlayer))
             {
                 _packet.Write(_player.id);
@@ -101,6 +103,8 @@ namespace GameDevCAServer
         //Sends the players location to clients
         public static void PlayerLocation(int _playerID, Vector3 _location)
         {
+
+            Console.WriteLine($"PlayerLocation -- _playerID: {_playerID}, _location: {_location}");
             using (Packet _packet = new Packet((int)ServerPackets.playerPosition))
             {
                 _packet.Write(_playerID);
@@ -113,6 +117,8 @@ namespace GameDevCAServer
         //Sends the players rotation to clients
         public static void PlayerRotation(int _playerID, Quaternion _rotation)
         {
+
+            Console.WriteLine($"PlayerLocation -- _playerID: {_playerID}, _location: {_rotation}");
             using (Packet _packet = new Packet((int)ServerPackets.playerRotation))
             {
                 _packet.Write(_playerID);

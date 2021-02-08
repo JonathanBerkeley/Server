@@ -9,6 +9,9 @@ namespace GameDevCAServer
     {
         public static void WelcomeReceived(int _fromClient, Packet _packet)
         {
+            Console.WriteLine($"Welcome received - _fromClient: {_fromClient}, _packet {_packet}");
+
+
             int _clientIdCheck = _packet.ReadInt();
             string _username = _packet.ReadString();
 
@@ -24,6 +27,7 @@ namespace GameDevCAServer
         //This will handle the trusted client data and skip computation of player input on the server
         public static void PlayerData(int _fromClient, Packet _packet)
         {
+            Console.WriteLine($"PlayerData - _fromClient: {_fromClient}, _packet {_packet}");
             Vector3 _playerLocation = _packet.ReadVector3();
             Quaternion _playerRotation = _packet.ReadQuaternion();
 
