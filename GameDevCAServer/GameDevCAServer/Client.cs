@@ -48,7 +48,7 @@ namespace GameDevCAServer
                 receiveBuffer = new byte[dataBufferSize];
                 stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
 
-                ServerSend.Welcome(id, "Successful connection! Welcome.");
+                ServerSend.Welcome(id, $"Successful connection! Welcome. Server running version {Constants.SERVER_VERSION}");
             }
 
             public void SendData(Packet _packet)
