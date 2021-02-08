@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mainuser\\Desktop\\dev\\unity\\GameDevCA\\Server\\GameDevCAServer\\GameDevCAServer\\GameDevCAServer.csproj": {}
+    "C:\\Users\\mainuser\\Desktop\\dev\\unity\\FinalGameDevCA\\ca1_fps_unity-JonathanBerkeley\\src\\Server\\GameDevCAServer\\GameDevCAServer\\GameDevCAServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mainuser\\Desktop\\dev\\unity\\GameDevCA\\Server\\GameDevCAServer\\GameDevCAServer\\GameDevCAServer.csproj": {
+    "C:\\Users\\mainuser\\Desktop\\dev\\unity\\FinalGameDevCA\\ca1_fps_unity-JonathanBerkeley\\src\\Server\\GameDevCAServer\\GameDevCAServer\\GameDevCAServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mainuser\\Desktop\\dev\\unity\\GameDevCA\\Server\\GameDevCAServer\\GameDevCAServer\\GameDevCAServer.csproj",
+        "projectUniqueName": "C:\\Users\\mainuser\\Desktop\\dev\\unity\\FinalGameDevCA\\ca1_fps_unity-JonathanBerkeley\\src\\Server\\GameDevCAServer\\GameDevCAServer\\GameDevCAServer.csproj",
         "projectName": "GameDevCAServer",
-        "projectPath": "C:\\Users\\mainuser\\Desktop\\dev\\unity\\GameDevCA\\Server\\GameDevCAServer\\GameDevCAServer\\GameDevCAServer.csproj",
+        "projectPath": "C:\\Users\\mainuser\\Desktop\\dev\\unity\\FinalGameDevCA\\ca1_fps_unity-JonathanBerkeley\\src\\Server\\GameDevCAServer\\GameDevCAServer\\GameDevCAServer.csproj",
         "packagesPath": "C:\\Users\\mainuser\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mainuser\\Desktop\\dev\\unity\\GameDevCA\\Server\\GameDevCAServer\\GameDevCAServer\\obj\\",
+        "outputPath": "C:\\Users\\mainuser\\Desktop\\dev\\unity\\FinalGameDevCA\\ca1_fps_unity-JonathanBerkeley\\src\\Server\\GameDevCAServer\\GameDevCAServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mainuser\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -26,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "System.Numerics.Vectors": {
               "target": "Package",
@@ -58,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

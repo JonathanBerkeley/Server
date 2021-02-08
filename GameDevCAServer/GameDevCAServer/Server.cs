@@ -21,7 +21,7 @@ namespace GameDevCAServer
             MaxPlayers = _maxPlayers;
             Port = _port;
 
-            Console.WriteLine("Starting server...");
+            Console.WriteLine($"Starting server... version {Constants.SERVER_VERSION}");
             InitializeServerData();
 
             tcpListener = new TcpListener(IPAddress.Any, Port);
