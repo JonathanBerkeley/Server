@@ -13,8 +13,3 @@ Unworking versions for testing
 
 ## 0.9.2
 Working server version
-
-## DIAG - 0.9.2
-Diagnostics version with lower tickrate and logging information for debugging purposes
-
-
