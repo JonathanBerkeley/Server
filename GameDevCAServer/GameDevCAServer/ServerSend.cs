@@ -123,7 +123,6 @@ namespace GameDevCAServer
         }
 
         //Custom projectile implementation
-        /*
         public static void ProjectileData(int _playerID, Vector3 _location, Quaternion _rotation)
         {
             using (Packet _packet = new Packet((int)ServerPackets.projectileData))
@@ -135,7 +134,6 @@ namespace GameDevCAServer
                 SendUDPDataToAll(_playerID, _packet);
             }
         }
-        */
         #endregion
     }
 }

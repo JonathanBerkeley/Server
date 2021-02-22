@@ -118,8 +118,7 @@ namespace GameDevCAServer
             {
                 { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
                 { (int)ClientPackets.playerData, ServerHandle.PlayerData },
-                //{ (int)ClientPackets.projectileData, ServerHandle.ProjectileData }
-
+                { (int)ClientPackets.projectileData, ServerHandle.ProjectileData },
                 //{ (int)ClientPackets.udpTestReceived, ServerHandle.UDPTestReceived }
             };
             Console.WriteLine("Initialized packets.");

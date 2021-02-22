@@ -16,8 +16,8 @@ namespace GameDevCAServer
         welcome = 1,
         spawnPlayer,
         playerPosition,
-        playerRotation
-        //projectileData
+        playerRotation,
+        projectileData
         //udpTest
     }
 
@@ -25,8 +25,8 @@ namespace GameDevCAServer
     public enum ClientPackets
     {
         welcomeReceived = 1,
-        playerData
-        //projectileData
+        playerData,
+        projectileData
         //udpTestReceived
     }
 

@@ -12,7 +12,7 @@ namespace GameDevCAServer
             int _clientIdCheck = _packet.ReadInt();
             string _username = _packet.ReadString();
 
-            Console.WriteLine($"{Server.clients[_fromClient].tcp.socket.Client.RemoteEndPoint} connected successfully and is now player {_fromClient}.");
+            Console.WriteLine($"{Server.clients[_fromClient].tcp.socket.Client.RemoteEndPoint} connected successfully and is now player {_fromClient}. With username {_username}.");
             if (_fromClient != _clientIdCheck)
             {
                 Console.WriteLine($"Player \"{_username}\" (ID: {_fromClient}) has assumed the wrong client ID ({_clientIdCheck})!");
@@ -32,7 +32,6 @@ namespace GameDevCAServer
             ServerSend.PlayerRotation(_fromClient, _playerRotation);
         }
 
-        /*
         public static void ProjectileData(int _fromClient, Packet _packet)
         {
             Vector3 _projectileLocation = _packet.ReadVector3();
@@ -40,7 +39,6 @@ namespace GameDevCAServer
 
             ServerSend.ProjectileData(_fromClient, _projectileLocation, _projectileRotation);
         }
-        */
 
         /* For testing UDP
         public static void UDPTestReceived (int _fromClient, Packet _packet)
