@@ -16,7 +16,7 @@ Unworking versions for testing
 Working server version
 
 ## 0.9.3 
-Cleaned up version with decluttered server logging
+Cleaned up version with decluttered server logging  
 https://github.com/JonathanBerkeley/Server/releases/tag/0.9.3
 
 ## 0.9.4 
