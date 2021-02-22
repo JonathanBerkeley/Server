@@ -16,3 +16,6 @@ Working server version
 
 ## 0.9.3
 Cleaned up version with decluttered server logging
+
+## 0.9.4
+Projectile handling code reintroduced, however there is no stable client build available for this version
