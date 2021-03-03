@@ -8,6 +8,6 @@ namespace GameDevCAServer
     {
         public const int TICKS_PER_SEC = 75;
         public const int MS_PER_TICK = 1000 / TICKS_PER_SEC;
-        public const string SERVER_VERSION = "0.9.4";
+        public const string SERVER_VERSION = "0.9.5";
     }
 }

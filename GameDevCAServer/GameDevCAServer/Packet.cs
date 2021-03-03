@@ -17,7 +17,8 @@ namespace GameDevCAServer
         spawnPlayer,
         playerPosition,
         playerRotation,
-        projectileData
+        projectileData,
+        userMessage
         //udpTest
     }
 
@@ -26,7 +27,8 @@ namespace GameDevCAServer
     {
         welcomeReceived = 1,
         playerData,
-        projectileData
+        projectileData,
+        userMessage
         //udpTestReceived
     }
 

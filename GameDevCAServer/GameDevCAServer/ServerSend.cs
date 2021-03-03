@@ -134,6 +134,20 @@ namespace GameDevCAServer
                 SendUDPDataToAll(_playerID, _packet);
             }
         }
+
+        //For message receiving and sending between clients
+        public static void ClientChat(int _playerID, String _message)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.userMessage))
+            {
+                _packet.Write(_playerID);
+                _packet.Write(_message);
+
+                //Message wont render for the player unless it successfully gets through the server
+                //Could give latency between sending a message and seeing it on their own screen
+                SendTCPDataToAll(_packet);
+            }
+        }
         #endregion
     }
 }

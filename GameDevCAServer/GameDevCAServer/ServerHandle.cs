@@ -22,7 +22,7 @@ namespace GameDevCAServer
 
 
         //This will handle the trusted client data and skip computation of player input on the server
-        public static void PlayerData(int _fromClient, Packet _packet)
+        public static void ReceivePlayerData(int _fromClient, Packet _packet)
         {
             Vector3 _playerLocation = _packet.ReadVector3();
             Quaternion _playerRotation = _packet.ReadQuaternion();
@@ -32,12 +32,26 @@ namespace GameDevCAServer
             ServerSend.PlayerRotation(_fromClient, _playerRotation);
         }
 
-        public static void ProjectileData(int _fromClient, Packet _packet)
+        public static void ReceiveProjectileData(int _fromClient, Packet _packet)
         {
             Vector3 _projectileLocation = _packet.ReadVector3();
             Quaternion _projectileRotation = _packet.ReadQuaternion();
 
             ServerSend.ProjectileData(_fromClient, _projectileLocation, _projectileRotation);
+        }
+
+        public static void ReceiveClientChat(int _fromClient, Packet _packet)
+        {
+            String _message = _packet.ReadString();
+            if (_message.Length < 100)
+            {
+                ServerSend.ClientChat(_fromClient, _message);
+                Console.WriteLine($"Client {_fromClient} sent {_message}");
+            }
+            else
+            {
+                Console.WriteLine($"Client {_fromClient} sent too large of a message!");
+            }
         }
 
         /* For testing UDP

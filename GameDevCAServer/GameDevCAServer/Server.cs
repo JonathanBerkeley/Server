@@ -117,8 +117,9 @@ namespace GameDevCAServer
             packetHandlers = new Dictionary<int, PacketHandler>()
             {
                 { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
-                { (int)ClientPackets.playerData, ServerHandle.PlayerData },
-                { (int)ClientPackets.projectileData, ServerHandle.ProjectileData },
+                { (int)ClientPackets.playerData, ServerHandle.ReceivePlayerData },
+                { (int)ClientPackets.projectileData, ServerHandle.ReceiveProjectileData },
+                { (int)ClientPackets.userMessage, ServerHandle.ReceiveClientChat }
                 //{ (int)ClientPackets.udpTestReceived, ServerHandle.UDPTestReceived }
             };
             Console.WriteLine("Initialized packets.");
