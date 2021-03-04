@@ -46,11 +46,11 @@ namespace GameDevCAServer
             if (_message.Length < 100)
             {
                 ServerSend.ClientChat(_fromClient, _message);
-                Console.WriteLine($"Client {_fromClient} sent {_message}");
+                Console.WriteLine($"Client {Server.clients[_fromClient].player.username} sent: {_message}");
             }
             else
             {
-                Console.WriteLine($"Client {_fromClient} sent too large of a message!");
+                Console.WriteLine($"Client {Server.clients[_fromClient].player.username} sent too large of a message!");
             }
         }
 
