@@ -21,3 +21,6 @@ https://github.com/JonathanBerkeley/Server/releases/tag/0.9.3
 
 ## 0.9.4 
 Projectile handling code reintroduced, however there is no stable client build available for this version
+
+## 0.9.5 - 0.9.6
+Versions that now support mutliplayer chat
