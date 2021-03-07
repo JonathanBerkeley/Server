@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.Numerics;
+using System.Linq;
 
 namespace GameDevCAServer
 {
@@ -43,10 +43,57 @@ namespace GameDevCAServer
         public static void ReceiveClientChat(int _fromClient, Packet _packet)
         {
             String _message = _packet.ReadString();
+
             if (_message.Length < 100)
             {
-                ServerSend.ClientChat(_fromClient, _message);
+                //Basic sanitization
+                _message = Regex.Replace(_message, @"[><\\]", "");
+
                 Console.WriteLine($"Client {Server.clients[_fromClient].player.username} sent: {_message}");
+
+                //For server commands
+                if (_message.Length > 0 && _message[0] == '/')
+                {
+                    string _command = Regex.Match(_message, @"^(\/[a-z]+)").ToString();
+
+                    if (_command.Length > 0)
+                    {
+                        string[] serverCommands = { "/msg" };
+
+                        //Server command '/msg'
+                        if (_command == serverCommands[0])
+                        {
+                            try
+                            {
+                                string[] _args = _message.Split(' ');
+                                string _target = _args[1];
+
+                                _message = _message.Remove(0, serverCommands[0].Length + _target.Length + 2);
+                                //_message = $"<color=\"#A0A0A0\">whispered: " + _message + "</color>";
+
+                                foreach (var p in Server.clients)
+                                {
+                                    if (p.Value.player.username == _target)
+                                    {
+                                        ServerSend.ClientChat(_fromClient, _message, p.Key);
+                                        break;
+                                    }
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"{serverCommands[0]} caught {ex.GetType()}");
+                            }
+
+                        }
+                    }
+                }
+                else
+                {
+                    ServerSend.ClientChat(_fromClient, _message);
+                }
+
             }
             else
             {

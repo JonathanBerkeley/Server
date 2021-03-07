@@ -148,6 +148,18 @@ namespace GameDevCAServer
                 SendTCPDataToAll(_packet);
             }
         }
+        
+        //For messaging specific client
+        public static void ClientChat(int _playerID, String _message, int _toClient)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.userMessage))
+            {
+                _packet.Write(_playerID);
+                _packet.Write(_message);
+
+                SendTCPData(_toClient, _packet);
+            }
+        }
         #endregion
     }
 }
