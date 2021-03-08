@@ -15,6 +15,7 @@ namespace GameDevCAServer
     {
         welcome = 1,
         spawnPlayer,
+        playerDisconnected,
         playerPosition,
         playerRotation,
         projectileData,

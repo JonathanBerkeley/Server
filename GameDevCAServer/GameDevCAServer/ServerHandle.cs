@@ -12,6 +12,27 @@ namespace GameDevCAServer
             int _clientIdCheck = _packet.ReadInt();
             string _username = _packet.ReadString();
 
+            /*
+            try 
+            {
+                if (Server.clients.ContainsKey(1))
+                {
+                    for (int i = 1; i < Server.clients.Count; ++i)
+                    {
+                        if (Server.clients[i].player.username == _username)
+                        {
+                            Server.clients[_fromClient].Disconnect();
+                            return;
+                        }
+                    }
+                }
+            } 
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Welcome received exception: {ex}");
+            }
+            */
+
             Console.WriteLine($"{Server.clients[_fromClient].tcp.socket.Client.RemoteEndPoint} connected successfully and is now player {_fromClient}. With username {_username}.");
             if (_fromClient != _clientIdCheck)
             {

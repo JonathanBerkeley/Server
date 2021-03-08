@@ -96,6 +96,17 @@ namespace GameDevCAServer
             }
         }
 
+        //Tells other clients that a player has disconnected so they can cleanup the prefab and dictionary
+        public static void PlayerDisconnected(int _playerID)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.playerDisconnected))
+            {
+                _packet.Write(_playerID);
+
+                SendTCPDataToAll(_packet);
+            }
+        }
+
 
         //My methods for sending client computed data to other clients below
         //Sends the players location to clients

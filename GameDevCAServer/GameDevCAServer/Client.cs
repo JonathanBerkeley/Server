@@ -81,7 +81,8 @@ namespace GameDevCAServer
 
                     receivedData.Reset(HandleData(_data));
                     stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
-                } catch (Exception ex)
+                } 
+                catch (Exception ex)
                 {
                     Console.WriteLine($"Error receiving TCP data: {ex}");
                     Server.clients[id].Disconnect();
@@ -212,12 +213,13 @@ namespace GameDevCAServer
             }
         }
 
-        private void Disconnect()
+        public void Disconnect()
         {
             Console.WriteLine($"{tcp.socket.Client.RemoteEndPoint} has disconnected.");
             player = null;
             tcp.Disconnect();
             udp.Disconnect();
+            ServerSend.PlayerDisconnected(id);
         }
     }
 }
