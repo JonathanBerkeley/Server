@@ -3,7 +3,7 @@ With thanks to Tom Weiland for the foundational code https://github.com/tom-weil
 
 # Versioning info:
 Major stable versions will have a release download     
-[Current version](#0.9.9 - 1.0.0 -- (Supports client version 1.2.0))
+[Current version](#0.9.9-1.0.0)
 
 ## Unversioned
 Early development / unstable
@@ -31,7 +31,8 @@ Foundational support for chat commands. New chat command with usage:
 ## 0.9.8
 Added support for disconnect alert packets, to alert other clients that a client has disconnected.
 
-## 0.9.9 - 1.0.0 -- (Supports client version 1.2.0)
+## 0.9.9 - 1.0.0
+(Supports client version 1.2.0)
 Added server-client flags to communicate errors to the client (such as server full or username taken etc).    
 Reformatted server console messages.   
 Client version now communicated to the server.    
