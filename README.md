@@ -3,7 +3,7 @@ With thanks to Tom Weiland for the foundational code https://github.com/tom-weil
 
 # Versioning info:
 Major stable versions will have a release download     
-[Current version](#1.0.0)
+[Current version](#0.9.9 - 1.0.0 -- (Supports client version 1.2.0))
 
 ## Unversioned
 Early development / unstable
