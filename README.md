@@ -21,6 +21,7 @@ https://github.com/JonathanBerkeley/Server/releases/tag/0.9.3
 
 ## 0.9.4 
 Projectile handling code reintroduced, server supports projectile data
+https://github.com/JonathanBerkeley/Server/releases/tag/0.9.4
 
 ## 0.9.5 - 0.9.6
 Versions that now support multiplayer chat
