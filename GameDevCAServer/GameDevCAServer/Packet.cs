@@ -19,7 +19,8 @@ namespace GameDevCAServer
         playerPosition,
         playerRotation,
         projectileData,
-        userMessage
+        userMessage,
+        serverControlComms
         //udpTest
     }
 

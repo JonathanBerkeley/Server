@@ -14,12 +14,11 @@ namespace GameDevCAServer
             mainThread.Start();
 
 
-            Server.Start(8, 24745);
+            Server.Start(Constants.MAX_PLAYERS, Constants.SERVER_PORT);
         }
 
         private static void MainThread()
         {
-            Console.WriteLine($"Main thread started. Running at {Constants.TICKS_PER_SEC} ticks per second.");
             DateTime _nextLoop = DateTime.Now;
 
             while (isRunning)

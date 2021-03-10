@@ -11,6 +11,7 @@ namespace GameDevCAServer
         {
             int _clientIdCheck = _packet.ReadInt();
             string _username = _packet.ReadString();
+            string _clientVersion = _packet.ReadString();
 
             /*
             try 
@@ -33,14 +34,18 @@ namespace GameDevCAServer
             }
             */
 
-            Console.WriteLine($"{Server.clients[_fromClient].tcp.socket.Client.RemoteEndPoint} connected successfully and is now player {_fromClient}. With username {_username}.");
+            Console.WriteLine($"\n\t{Server.clients[_fromClient].tcp.socket.Client.RemoteEndPoint} connected successfully.\n" +
+                $"\tPlayer ID: \t\t{_fromClient} \n" +
+                $"\tUsername: \t\t{_username} \n" +
+                $"\tClient version: \t{_clientVersion}\n"
+            );
+
             if (_fromClient != _clientIdCheck)
             {
                 Console.WriteLine($"Player \"{_username}\" (ID: {_fromClient}) has assumed the wrong client ID ({_clientIdCheck})!");
             }
             Server.clients[_fromClient].SendIntoGame(_username);
         }
-
 
         //This will handle the trusted client data and skip computation of player input on the server
         public static void ReceivePlayerData(int _fromClient, Packet _packet)

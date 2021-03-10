@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using System.Numerics;
 using System.Text;
 
@@ -27,6 +28,7 @@ namespace GameDevCAServer
                 Server.clients[i].tcp.SendData(_packet);
             }
         }        
+
         private static void SendTCPDataToAll(int _exceptClient, Packet _packet)
         {
             _packet.WriteLength();
@@ -47,6 +49,7 @@ namespace GameDevCAServer
                 Server.clients[i].udp.SendData(_packet);
             }
         }
+
         private static void SendUDPDataToAll(int _exceptClient, Packet _packet)
         {
             _packet.WriteLength();
@@ -57,6 +60,11 @@ namespace GameDevCAServer
                     Server.clients[i].udp.SendData(_packet);
                 }
             }
+        }
+
+        private static void SendToAnon(Packet _packet)
+        {
+
         }
 
         //https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region
@@ -106,7 +114,6 @@ namespace GameDevCAServer
                 SendTCPDataToAll(_packet);
             }
         }
-
 
         //My methods for sending client computed data to other clients below
         //Sends the players location to clients
@@ -171,6 +178,18 @@ namespace GameDevCAServer
                 SendTCPData(_toClient, _packet);
             }
         }
+
+        //For communicating server messages to the client
+        public static void ServerMessage(int _playerID, int _message)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.serverControlComms))
+            {
+                _packet.Write(_message);
+
+                SendTCPData(_playerID, _packet);
+            }
+        }
+
         #endregion
     }
 }

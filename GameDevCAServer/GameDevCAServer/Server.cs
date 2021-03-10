@@ -21,7 +21,16 @@ namespace GameDevCAServer
             MaxPlayers = _maxPlayers;
             Port = _port;
 
-            Console.WriteLine($"Starting server... version {Constants.SERVER_VERSION}");
+            //Server information formatted for the console
+            Console.WriteLine(
+                $"SERVER INFORMATION:\n" +
+                $"_______________________________\n\n" +
+                $"Version: \t{Constants.SERVER_VERSION}\n" +
+                $"Max players: \t{Constants.MAX_PLAYERS}\n" +
+                $"TPS: \t\t{Constants.TICKS_PER_SEC}\n" +
+                $"_______________________________\n"
+            );
+
             InitializeServerData();
 
             tcpListener = new TcpListener(IPAddress.Any, Port);
@@ -38,7 +47,7 @@ namespace GameDevCAServer
         {
             TcpClient _client = tcpListener.EndAcceptTcpClient(_result);
             tcpListener.BeginAcceptTcpClient(TCPConnectCallback, null);
-            Console.WriteLine($"Incoming connection from: {_client.Client.RemoteEndPoint}");
+            Console.WriteLine($">Incoming connection from: {_client.Client.RemoteEndPoint}");
 
             for (int i = 1; i <= MaxPlayers; ++i)
             {
@@ -49,7 +58,9 @@ namespace GameDevCAServer
                 }
             }
 
+            
             Console.WriteLine($"{_client.Client.RemoteEndPoint} failed to connect: Server full!");
+            clients[-1].tcp.Errored(_client, 1);
         }
 
         private static void UDPReceiveCallback(IAsyncResult _result)
@@ -87,7 +98,8 @@ namespace GameDevCAServer
                         clients[_clientId].udp.HandleData(_packet);
                     }
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine($"Error receiving UDP data: {ex}");
             }
@@ -114,6 +126,9 @@ namespace GameDevCAServer
                 clients.Add(i, new Client(i));
             }
 
+            //Used to reply to error clients
+            clients.Add(-1, new Client(-1));
+
             packetHandlers = new Dictionary<int, PacketHandler>()
             {
                 { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
@@ -122,7 +137,6 @@ namespace GameDevCAServer
                 { (int)ClientPackets.userMessage, ServerHandle.ReceiveClientChat }
                 //{ (int)ClientPackets.udpTestReceived, ServerHandle.UDPTestReceived }
             };
-            Console.WriteLine("Initialized packets.");
         }
     }
 }

@@ -51,6 +51,17 @@ namespace GameDevCAServer
                 ServerSend.Welcome(id, $"Successful connection! Welcome. Server running version {Constants.SERVER_VERSION}");
             }
 
+            public void Errored(TcpClient _socket, int _serverMessage)
+            {
+                socket = _socket;
+                socket.ReceiveBufferSize = dataBufferSize;
+                socket.SendBufferSize = dataBufferSize;
+
+                stream = socket.GetStream();
+                ServerSend.ServerMessage(id, _serverMessage);
+                Disconnect();
+            }
+
             public void SendData(Packet _packet)
             {
                 try
