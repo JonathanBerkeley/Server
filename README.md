@@ -38,3 +38,4 @@ Added server-client flags to communicate errors to the client (such as server fu
 Reformatted server console messages.   
 Client version now communicated to the server.    
 Fixed issue with server being full sending clients to ghost server.    
+https://github.com/JonathanBerkeley/Server/releases/tag/1.0.0
