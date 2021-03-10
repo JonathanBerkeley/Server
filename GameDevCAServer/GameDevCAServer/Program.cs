@@ -27,7 +27,7 @@ namespace GameDevCAServer
                 {
                     GameLogic.Update();
                     _nextLoop = _nextLoop.AddMilliseconds(Constants.MS_PER_TICK);
-                    
+
                     //Efficiency code which checks if server skips ahead. Sleeps this thread until catches up with real time
                     //This drastically reduces CPU usage of server
                     if (_nextLoop > DateTime.Now)

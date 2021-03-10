@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Net;
 using System.Net.Sockets;
 
@@ -58,7 +57,7 @@ namespace GameDevCAServer
                 }
             }
 
-            
+
             Console.WriteLine($"{_client.Client.RemoteEndPoint} failed to connect: Server full!");
             clients[-1].tcp.Errored(_client, 1);
         }
@@ -79,7 +78,7 @@ namespace GameDevCAServer
                 using (Packet _packet = new Packet(_data))
                 {
                     int _clientId = _packet.ReadInt();
-                    
+
                     //Client ID should never be 0, attempting 0 would crash server
                     if (_clientId == 0)
                     {
@@ -113,7 +112,8 @@ namespace GameDevCAServer
                 {
                     udpListener.BeginSend(_packet.ToArray(), _packet.Length(), _clientEndPoint, null, null);
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine($"Error sending data to {_clientEndPoint} through UDP: {ex}");
             }

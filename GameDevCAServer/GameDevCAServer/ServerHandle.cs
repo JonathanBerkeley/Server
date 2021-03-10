@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using System.Numerics;
-using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace GameDevCAServer
 {
@@ -17,7 +16,7 @@ namespace GameDevCAServer
             try 
             {
                 if (Server.clients.ContainsKey(1))
-                {
+                { 
                     for (int i = 1; i < Server.clients.Count; ++i)
                     {
                         if (Server.clients[i].player.username == _username)

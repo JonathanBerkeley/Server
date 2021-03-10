@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net.Sockets;
 using System.Numerics;
-using System.Text;
 
 namespace GameDevCAServer
 {
@@ -27,7 +24,7 @@ namespace GameDevCAServer
             {
                 Server.clients[i].tcp.SendData(_packet);
             }
-        }        
+        }
 
         private static void SendTCPDataToAll(int _exceptClient, Packet _packet)
         {
@@ -166,7 +163,7 @@ namespace GameDevCAServer
                 SendTCPDataToAll(_packet);
             }
         }
-        
+
         //For messaging specific client
         public static void ClientChat(int _playerID, String _message, int _toClient)
         {

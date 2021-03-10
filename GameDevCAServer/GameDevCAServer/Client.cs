@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Numerics;
@@ -70,7 +68,8 @@ namespace GameDevCAServer
                     {
                         stream.BeginWrite(_packet.ToArray(), 0, _packet.Length(), null, null);
                     }
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Console.WriteLine($"Error sending data to player {id} via TCP: {ex}");
                 }
@@ -92,7 +91,7 @@ namespace GameDevCAServer
 
                     receivedData.Reset(HandleData(_data));
                     stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
-                } 
+                }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"Error receiving TCP data: {ex}");

@@ -1,5 +1,9 @@
 *.suo
 .vs/
+publish/
+obj/
+bin/
+Properties/
 
 # Files built by Visual Studio
 *_i.c
@@ -29,6 +33,8 @@
 *.pidb
 *.svclog
 *.scc
+*.csproj
+*.user
 
 # Visual Studio profiler
 *.psess
