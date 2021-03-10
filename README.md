@@ -1,10 +1,9 @@
-# Testing server
-This repository is public as it needs to be accessed by an external server, please ignore it if you ended up here somehow :)
-
-
+# Server software for an in-development unity video game
+With thanks to Tom Weiland for the foundational code https://github.com/tom-weiland
 
 # Versioning info:
-Major stable versions will have a release download
+Major stable versions will have a release download     
+[Current version](#1.0.0)
 
 ## Unversioned
 Early development / unstable
@@ -27,7 +26,7 @@ Versions that now support multiplayer chat
 
 ## 0.9.7
 Foundational support for chat commands. New chat command with usage:
-/msg [user] [message]
+/msg [user] \[message]
 
 ## 0.9.8
 Added support for disconnect alert packets, to alert other clients that a client has disconnected.
