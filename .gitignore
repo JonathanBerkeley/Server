@@ -33,7 +33,6 @@ Properties/
 *.pidb
 *.svclog
 *.scc
-*.csproj
 *.user
 
 # Visual Studio profiler
