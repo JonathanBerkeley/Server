@@ -24,3 +24,10 @@ Projectile handling code reintroduced, server supports projectile data
 
 ## 0.9.5 - 0.9.6
 Versions that now support multiplayer chat
+
+## 0.9.7
+Foundational support for chat commands. New chat command with usage:
+/msg [user] [message]
+
+## 0.9.8
+Added support for disconnect alert packets, to alert other clients that a client has disconnected.
