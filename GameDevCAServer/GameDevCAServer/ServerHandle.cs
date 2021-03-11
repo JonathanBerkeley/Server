@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Numerics;
 using System.Text.RegularExpressions;
+using FlagTranslations;
 
 namespace GameDevCAServer
 {
@@ -85,14 +86,33 @@ namespace GameDevCAServer
                     {
                         string[] serverCommands = { "/msg" };
 
+                        //Check if request was a valid command
+                        for (int i = 0; i < serverCommands.Length; ++i)
+                        {
+                            if (i == (serverCommands.Length - 1) && _command != serverCommands[i])
+                            {
+                                ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.invalidCommand);
+                                return;
+                            }
+                        }
+
                         //Server command '/msg'
                         if (_command == serverCommands[0])
                         {
                             try
                             {
                                 string[] _args = _message.Split(' ');
+                                
+                                //Checks if too few arguments
+                                if (_args.Length < 2)
+                                {
+                                    ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.badArguments);
+                                    return;
+                                }
+
                                 string _target = _args[1];
 
+                                //Removes the command from the message to be sent
                                 _message = _message.Remove(0, serverCommands[0].Length + _target.Length + 2);
                                 //_message = $"<color=\"#A0A0A0\">whispered: " + _message + "</color>";
 
@@ -106,10 +126,17 @@ namespace GameDevCAServer
                                 }
 
                             }
-                            catch (Exception ex)
+                            catch (NullReferenceException)
                             {
-                                Console.WriteLine($"{serverCommands[0]} caught {ex.GetType()}");
+                                //The user that the client referenced doesn't exist, reply with error so client knows
+                                ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.userNotFound);
+                                //Console.WriteLine($"{serverCommands[0]} caught {ex.GetType()}");
                             }
+                            catch (ArgumentOutOfRangeException)
+                            {
+                                ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.badArguments);
+                            }
+                            catch (Exception) { }
 
                         }
                     }

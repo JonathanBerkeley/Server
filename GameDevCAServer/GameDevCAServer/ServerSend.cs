@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using FlagTranslations;
 
 namespace GameDevCAServer
 {
@@ -177,11 +178,11 @@ namespace GameDevCAServer
         }
 
         //For communicating server messages to the client
-        public static void ServerMessage(int _playerID, int _message)
+        public static void ServerMessage(int _playerID, ServerCodeTranslations _message)
         {
             using (Packet _packet = new Packet((int)ServerPackets.serverControlComms))
             {
-                _packet.Write(_message);
+                _packet.Write((int)_message);
 
                 SendTCPData(_playerID, _packet);
             }

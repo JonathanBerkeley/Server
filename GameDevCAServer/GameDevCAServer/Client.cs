@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Numerics;
+using FlagTranslations;
 
 namespace GameDevCAServer
 {
@@ -49,7 +50,7 @@ namespace GameDevCAServer
                 ServerSend.Welcome(id, $"Successful connection! Welcome. Server running version {Constants.SERVER_VERSION}");
             }
 
-            public void Errored(TcpClient _socket, int _serverMessage)
+            public void Errored(TcpClient _socket, ServerCodeTranslations _serverMessage)
             {
                 socket = _socket;
                 socket.ReceiveBufferSize = dataBufferSize;

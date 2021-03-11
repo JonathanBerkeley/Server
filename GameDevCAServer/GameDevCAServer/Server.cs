@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
+using FlagTranslations;
 
 namespace GameDevCAServer
 {
@@ -59,7 +60,7 @@ namespace GameDevCAServer
 
 
             Console.WriteLine($"{_client.Client.RemoteEndPoint} failed to connect: Server full!");
-            clients[-1].tcp.Errored(_client, 1);
+            clients[-1].tcp.Errored(_client, ServerCodeTranslations.serverFull);
         }
 
         private static void UDPReceiveCallback(IAsyncResult _result)
