@@ -46,7 +46,7 @@ https://github.com/JonathanBerkeley/Server/releases/tag/1.0.0
 
 ## 1.0.1 - 1.0.3
 (Supports client version 1.2.3 - 1.2.4)
-Large amount of changes, including many more flags being sent to the user to describe errors.
-Many new validation implementations for users, such as checking their username isn't taken, their message to the chat wasn't whitespace etc
-Now has a whitelist of client versions it accepts to stop old clients crashing the server
-Fixed other minor issues (such as dictionary desync when declining a user before full connection)
+Large amount of changes, including many more flags being sent to the user to describe errors.    
+Many new validation implementations for users, such as checking their username isn't taken, their message to the chat wasn't whitespace etc.    
+Now has a whitelist of client versions it accepts to stop old clients crashing the server.    
+Fixed other minor issues (such as dictionary desync when declining a user before full connection).    
