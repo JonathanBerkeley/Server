@@ -93,6 +93,8 @@ namespace GameDevCAServer
                     receivedData.Reset(HandleData(_data));
                     stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
                 }
+                catch (ObjectDisposedException) { } 
+                catch (NullReferenceException) { } //Both expected if the server has closed the connection elsewhere
                 catch (Exception ex)
                 {
                     Console.WriteLine($"Error receiving TCP data: {ex}");
@@ -230,7 +232,17 @@ namespace GameDevCAServer
             player = null;
             tcp.Disconnect();
             udp.Disconnect();
+            //Tells the clients to update their dictionaries
             ServerSend.PlayerDisconnected(id);
+        }
+
+        //For disconnects which the other clients have not yet updated their dictionaries for
+        public void DisconnectUnregistered()
+        {
+            Console.WriteLine($"{tcp.socket.Client.RemoteEndPoint} has disconnected.");
+            player = null;
+            tcp.Disconnect();
+            udp.Disconnect();
         }
     }
 }

@@ -13,26 +13,52 @@ namespace GameDevCAServer
             string _username = _packet.ReadString();
             string _clientVersion = _packet.ReadString();
 
-            /*
-            try 
+            #region Validity checks
+            //Client validity checks
+            if (_username.Length > 12)
             {
-                if (Server.clients.ContainsKey(1))
-                { 
-                    for (int i = 1; i < Server.clients.Count; ++i)
+                ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.invalidUsername);
+                Server.clients[_fromClient].Disconnect();
+                return;
+            }
+
+            bool _validVersion = false;
+            foreach (string s in Constants.ACCEPTED_CLIENT_VERSIONS)
+            {
+                if (s == _clientVersion)
+                {
+                    _validVersion = true;
+                    break;
+                }
+            }
+
+            if (!_validVersion)
+            {
+                ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.badVersion);
+                Server.clients[_fromClient].Disconnect();
+                return;
+            }
+
+            try
+            {
+                foreach (Client c in Server.clients.Values)
+                {
+                    if (c.player != null)
                     {
-                        if (Server.clients[i].player.username == _username)
+                        if (c.player.username == _username)
                         {
-                            Server.clients[_fromClient].Disconnect();
+                            ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.usernameTaken);
+                            Server.clients[_fromClient].DisconnectUnregistered();
                             return;
                         }
                     }
                 }
-            } 
+            }
             catch (Exception ex)
             {
                 Console.WriteLine($"Welcome received exception: {ex}");
             }
-            */
+            #endregion
 
             Console.WriteLine($"\n\t{Server.clients[_fromClient].tcp.socket.Client.RemoteEndPoint} connected successfully.\n" +
                 $"\tPlayer ID: \t\t{_fromClient} \n" +
@@ -70,10 +96,17 @@ namespace GameDevCAServer
         {
             String _message = _packet.ReadString();
 
+
             if (_message.Length < 100)
             {
-                //Basic sanitization
+                #region Sanitization
+                //Discard empty/newline/carriage return/whitespace
+                string _emptyCheck = Regex.Replace(_message, @"[\n\r\s]+", "");
+                if (_emptyCheck.Length < 1)
+                    return;
+                //Sanitization of characters
                 _message = Regex.Replace(_message, @"[><\\]", "");
+                #endregion
 
                 Console.WriteLine($"Client {Server.clients[_fromClient].player.username} sent: {_message}");
 
@@ -102,7 +135,7 @@ namespace GameDevCAServer
                             try
                             {
                                 string[] _args = _message.Split(' ');
-                                
+
                                 //Checks if too few arguments
                                 if (_args.Length < 2)
                                 {
@@ -116,11 +149,20 @@ namespace GameDevCAServer
                                 _message = _message.Remove(0, serverCommands[0].Length + _target.Length + 2);
                                 //_message = $"<color=\"#A0A0A0\">whispered: " + _message + "</color>";
 
+                                //To be sent to self
+                                string _selfMessage = "You sent: " + _message;
+
                                 foreach (var p in Server.clients)
                                 {
                                     if (p.Value.player.username == _target)
                                     {
                                         ServerSend.ClientChat(_fromClient, _message, p.Key);
+                                        //Prevent doublesending if /msg'd self
+                                        if (_fromClient != p.Key)
+                                        {
+                                            ServerSend.ClientChat(_fromClient, _selfMessage, _fromClient);
+                                        }
+
                                         break;
                                     }
                                 }
@@ -137,7 +179,6 @@ namespace GameDevCAServer
                                 ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.badArguments);
                             }
                             catch (Exception) { }
-
                         }
                     }
                 }

@@ -4,6 +4,7 @@
     {
         serverFull = 1,
         invalidUsername,
+        badVersion,
         usernameTaken,
         userNotFound,
         badArguments,

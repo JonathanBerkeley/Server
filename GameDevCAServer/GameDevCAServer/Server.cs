@@ -58,7 +58,6 @@ namespace GameDevCAServer
                 }
             }
 
-
             Console.WriteLine($"{_client.Client.RemoteEndPoint} failed to connect: Server full!");
             clients[-1].tcp.Errored(_client, ServerCodeTranslations.serverFull);
         }
