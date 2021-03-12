@@ -5,6 +5,8 @@ With thanks to Tom Weiland for the foundational code https://github.com/tom-weil
 # Versioning info:
 Major stable versions will have a release download     
 [Current version](#099---100)
+<details>
+  <summary>Historical versions</summary>
 
 ## Unversioned
 Early development / unstable
@@ -32,7 +34,8 @@ Foundational support for chat commands. New chat command with usage:
 
 ## 0.9.8
 Added support for disconnect alert packets, to alert other clients that a client has disconnected.
-
+</details>
+ 
 ## 0.9.9 - 1.0.0
 (Supports client version 1.2.0)
 Added server-client flags to communicate errors to the client (such as server full or username taken etc).    
@@ -40,3 +43,10 @@ Reformatted server console messages.
 Client version now communicated to the server.    
 Fixed issue with server being full sending clients to ghost server.    
 https://github.com/JonathanBerkeley/Server/releases/tag/1.0.0
+
+## 1.0.1 - 1.0.3
+(Supports client version 1.2.3 - 1.2.4)
+Large amount of changes, including many more flags being sent to the user to describe errors.
+Many new validation implementations for users, such as checking their username isn't taken, their message to the chat wasn't whitespace etc
+Now has a whitelist of client versions it accepts to stop old clients crashing the server
+Fixed other minor issues (such as dictionary desync when declining a user before full connection)
