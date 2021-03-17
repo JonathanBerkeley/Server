@@ -1,4 +1,6 @@
-﻿namespace GameDevCAServer
+﻿using System;
+
+namespace GameDevCAServer
 {
     class GameLogic
     {

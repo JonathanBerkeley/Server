@@ -13,7 +13,6 @@ namespace GameDevCAServer
             Thread mainThread = new Thread(new ThreadStart(MainThread));
             mainThread.Start();
 
-
             Server.Start(Constants.MAX_PLAYERS, Constants.SERVER_PORT);
         }
 

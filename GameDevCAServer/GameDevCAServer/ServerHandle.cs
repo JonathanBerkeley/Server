@@ -117,22 +117,30 @@ namespace GameDevCAServer
 
                     if (_command.Length > 0)
                     {
-                        string[] serverCommands = { "/msg" };
+                        string[] serverCommands = { "/msg", "/colour" };
 
+                        bool _validCommand = false;
                         //Check if request was a valid command
                         for (int i = 0; i < serverCommands.Length; ++i)
                         {
-                            if (i == (serverCommands.Length - 1) && _command != serverCommands[i])
+                            if (serverCommands[i] == _command)
                             {
-                                ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.invalidCommand);
-                                return;
+                                _validCommand = true;
+                                break;
                             }
                         }
 
-                        //Server command '/msg'
-                        if (_command == serverCommands[0])
+                        if (!_validCommand)
                         {
-                            try
+                            ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.invalidCommand);
+                            return;
+                        }
+
+                        
+                        try
+                        {
+                            //Server command '/msg'
+                            if (_command == serverCommands[0])
                             {
                                 string[] _args = _message.Split(' ');
 
@@ -166,20 +174,24 @@ namespace GameDevCAServer
                                         break;
                                     }
                                 }
+                            }
+                            //Server command /colour
+                            else if (_command == serverCommands[1])
+                            {
 
                             }
-                            catch (NullReferenceException)
-                            {
-                                //The user that the client referenced doesn't exist, reply with error so client knows
-                                ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.userNotFound);
-                                //Console.WriteLine($"{serverCommands[0]} caught {ex.GetType()}");
-                            }
-                            catch (ArgumentOutOfRangeException)
-                            {
-                                ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.badArguments);
-                            }
-                            catch (Exception) { }
                         }
+                        catch (NullReferenceException)
+                        {
+                            //The user that the client referenced doesn't exist, reply with error so client knows
+                            ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.userNotFound);
+                            //Console.WriteLine($"{serverCommands[0]} caught {ex.GetType()}");
+                        }
+                        catch (ArgumentOutOfRangeException)
+                        {
+                            ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.badArguments);
+                        }
+                        catch (Exception) { }
                     }
                 }
                 else
