@@ -52,5 +52,5 @@ Now has a whitelist of client versions it accepts to stop old clients crashing t
 Fixed other minor issues (such as dictionary desync when declining a user before full connection).    
 
 ## 1.0.4
-(Supports client versions 1.2.3 - 1.2.7)
-Bugfixes and minor changes
+(Supports client versions 1.2.3 - 1.2.7)    
+Bugfixes and minor changes.    
