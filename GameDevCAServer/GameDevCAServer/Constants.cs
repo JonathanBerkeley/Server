@@ -7,6 +7,6 @@
         public const int TICKS_PER_SEC = 75;
         public const int MS_PER_TICK = 1000 / TICKS_PER_SEC;
         public const string SERVER_VERSION = "1.0.4";
-        public static readonly string[] ACCEPTED_CLIENT_VERSIONS = { "1.2.3", "1.2.4", "1.2.5", "1.2.6" };
+        public static readonly string[] ACCEPTED_CLIENT_VERSIONS = { "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7" };
     }
 }
