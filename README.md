@@ -53,6 +53,7 @@ Fixed other minor issues (such as dictionary desync when declining a user before
 ## 1.0.4
 (Supports client versions 1.2.3 - 1.2.7)    
 Bugfixes and minor changes.    
+https://github.com/JonathanBerkeley/Server/releases/tag/1.0.4
 </details>
 
 ## 1.0.5
