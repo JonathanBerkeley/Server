@@ -9,12 +9,39 @@ namespace GameDevCAServer
     {
         public static void WelcomeReceived(int _fromClient, Packet _packet)
         {
-            int _clientIdCheck = _packet.ReadInt();
-            string _username = _packet.ReadString();
-            string _clientVersion = _packet.ReadString();
+            int _clientIdCheck;
+            string _username;
+            string _clientVersion;
+            ulong _clientToken;
 
             #region Validity checks
             //Client validity checks
+            try
+            {
+                _clientIdCheck = _packet.ReadInt();
+                _username = _packet.ReadString();
+                _clientVersion = _packet.ReadString();
+                _clientToken = _packet.ReadULong();
+
+                if (_clientToken != Client.tokens[_fromClient])
+                {
+                    Console.WriteLine($"Tokens don't match {Client.tokens[_fromClient]}, {_clientToken}");
+                    ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.badToken);
+                    Server.clients[_fromClient].DisconnectUnregistered();
+                    return;
+                }
+                else
+                {
+                    ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.badVersion);
+                    Console.WriteLine("Client token matched!");
+                }
+            }
+            catch
+            {
+                Server.clients[_fromClient].DisconnectUnregistered();
+                return;
+            }
+
             if (_username.Length > 12)
             {
                 ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.invalidUsername);

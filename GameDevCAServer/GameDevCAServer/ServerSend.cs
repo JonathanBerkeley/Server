@@ -67,12 +67,14 @@ namespace GameDevCAServer
 
         //https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-region
         #region Packets
-        public static void Welcome(int _toClient, string _msg)
+        public static void Welcome(int _toClient, string _msg, ulong[] _validationData)
         {
             using (Packet _packet = new Packet((int)ServerPackets.welcome))
             {
                 _packet.Write(_msg);
                 _packet.Write(_toClient);
+                _packet.Write(_validationData[0]);
+                _packet.Write(_validationData[1]);
 
                 SendTCPData(_toClient, _packet);
             }

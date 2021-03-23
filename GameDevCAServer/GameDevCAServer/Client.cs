@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Numerics;
+using System.Security.Cryptography;
 using FlagTranslations;
 
 namespace GameDevCAServer
@@ -15,6 +17,7 @@ namespace GameDevCAServer
         public TCP tcp;
         public UDP udp;
 
+        internal static Dictionary<int, ulong> tokens = new Dictionary<int, ulong>();
         public Client(int _clientId)
         {
             id = _clientId;
@@ -47,7 +50,7 @@ namespace GameDevCAServer
                 receiveBuffer = new byte[dataBufferSize];
                 stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
 
-                ServerSend.Welcome(id, $"Successful connection! Welcome. Server running version {Constants.SERVER_VERSION}");
+                ServerSend.Welcome(id, $"Successful connection! Welcome. Server running version {Constants.SERVER_VERSION}", GenerateValidationKey(id));
             }
 
             public void Errored(TcpClient _socket, ServerCodeTranslations _serverMessage)
@@ -243,6 +246,28 @@ namespace GameDevCAServer
             player = null;
             tcp.Disconnect();
             udp.Disconnect();
+        }
+
+        private static ulong[] GenerateValidationKey(int _id)
+        {
+            Int32 _rand = RNGCryptoServiceProvider.GetInt32(Int32.MaxValue);
+            ulong _key = (ulong)_rand;
+
+
+            //This is the 'algorithm' that needs to be the same on both client and server
+            ulong _output = _key ^ 0xDCEDCCCAAFFC;
+            _output = (_output & 0xAFCFEFBEECE) >> 4 | (_output & 0xCACCADFFEFBCB) << 4;
+            _output ^= 0xFC0C3FB10FF65435;
+
+            if (tokens.ContainsKey(_id))
+                tokens.Remove(_id);
+                
+            tokens.Add(_id, _output);
+
+            ulong[] _results = new ulong[2];
+            _results[0] = _key;
+            _results[1] = _output;
+            return _results;
         }
     }
 }

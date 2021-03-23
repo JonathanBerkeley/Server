@@ -8,6 +8,7 @@
         usernameTaken,
         userNotFound,
         badArguments,
-        invalidCommand
+        invalidCommand,
+        badToken
     }
 }
