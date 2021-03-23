@@ -34,8 +34,7 @@ Foundational support for chat commands. New chat command with usage:
 
 ## 0.9.8
 Added support for disconnect alert packets, to alert other clients that a client has disconnected.
-</details>
- 
+
 ## 0.9.9 - 1.0.0
 (Supports client version 1.2.0)    
 Added server-client flags to communicate errors to the client (such as server full or username taken etc).    
@@ -54,3 +53,9 @@ Fixed other minor issues (such as dictionary desync when declining a user before
 ## 1.0.4
 (Supports client versions 1.2.3 - 1.2.7)    
 Bugfixes and minor changes.    
+</details>
+
+## 1.0.5
+(Supports client versions 1.2.8)
+More client validation now in place. 
+Server generates token that the client must also generate to establish connection.
