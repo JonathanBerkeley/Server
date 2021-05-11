@@ -123,7 +123,6 @@ namespace GameDevCAServer
         {
             String _message = _packet.ReadString();
 
-
             if (_message.Length < 100)
             {
                 #region Sanitization
