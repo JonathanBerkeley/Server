@@ -60,3 +60,8 @@ https://github.com/JonathanBerkeley/Server/releases/tag/1.0.4
 (Supports client versions 1.2.8)    
 More client validation now in place.     
 Server generates token that the client must also generate to establish connection.    
+
+## 1.0.7
+(Supports client versions 1.2.8 ~ 1.4.1)    
+Minor changes.    
+Updated to facilitate new clients    
