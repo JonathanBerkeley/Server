@@ -4,7 +4,7 @@ With thanks to Tom Weiland for the foundational code https://github.com/tom-weil
 
 # Versioning info:
 Major stable versions will have a release download     
-[Latest release](https://github.com/JonathanBerkeley/Server/releases/tag/1.0.4)
+[Latest release](https://github.com/JonathanBerkeley/Server/releases/tag/1.0.8)
 <details>
   <summary>Historical versions</summary>
 
