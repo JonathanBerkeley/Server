@@ -54,7 +54,6 @@ Fixed other minor issues (such as dictionary desync when declining a user before
 (Supports client versions 1.2.3 - 1.2.7)    
 Bugfixes and minor changes.    
 https://github.com/JonathanBerkeley/Server/releases/tag/1.0.4
-</details>
 
 ## 1.0.5
 (Supports client versions 1.2.8)    
@@ -65,3 +64,11 @@ Server generates token that the client must also generate to establish connectio
 (Supports client versions 1.2.8 ~ 1.4.1)    
 Minor changes.    
 Updated to facilitate new clients    
+https://github.com/JonathanBerkeley/Server/releases/tag/1.0.7
+
+</details>
+
+## 1.0.8
+(Supports client versions 1.3.8 ~ 1.4.5)    
+Updated to facilitate final build clients    
+https://github.com/JonathanBerkeley/Server/releases/tag/1.0.8
