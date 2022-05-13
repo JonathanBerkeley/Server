@@ -204,9 +204,9 @@ namespace GameDevCAServer
             }
         }
 
-        public void SendIntoGame(string _playerName)
+        public void SendIntoGame(string _playerName, string _clientHwid)
         {
-            player = new Player(id, _playerName, new Vector3(0, 0, 0));
+            player = new Player(id, _playerName, _clientHwid, new Vector3(0, 0, 0));
 
             foreach (Client _client in Server.clients.Values)
             {

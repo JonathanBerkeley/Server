@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Threading;
+using MongoDB.Driver;
+using dotenv.net;
 
 namespace GameDevCAServer
 {
     class Program
     {
         private static bool isRunning = false;
+        private static IMongoDatabase database;
+
         static void Main(string[] args)
         {
             Console.Title = "Game Server";
@@ -15,6 +19,23 @@ namespace GameDevCAServer
 
             Server.Start(Constants.MAX_PLAYERS, Constants.SERVER_PORT);
         }
+
+        public static IMongoDatabase GetMongoDatabase()
+        {
+            if (database != null)
+                return database;
+
+            var env = DotEnv.Read(options: new DotEnvOptions(probeForEnv: true, probeLevelsToSearch: 4));
+
+            var settings = MongoClientSettings.FromConnectionString(env["DB_URI"]);
+            settings.ServerApi = new ServerApi(ServerApiVersion.V1);
+
+            var mongoClient = new MongoClient(settings);
+            database = mongoClient.GetDatabase(env["DB_NAME"]);
+
+            return database;
+        }
+
 
         private static void MainThread()
         {

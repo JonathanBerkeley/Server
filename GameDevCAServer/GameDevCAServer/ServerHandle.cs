@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Numerics;
 using System.Text.RegularExpressions;
+using MongoDB.Driver;
+using MongoDB.Bson;
 using FlagTranslations;
+
 
 namespace GameDevCAServer
 {
@@ -13,6 +16,7 @@ namespace GameDevCAServer
             string _username;
             string _clientVersion;
             ulong _clientToken;
+            string _clientHwid;
 
             #region Validity checks
             //Client validity checks
@@ -22,6 +26,35 @@ namespace GameDevCAServer
                 _username = _packet.ReadString();
                 _clientVersion = _packet.ReadString();
                 _clientToken = _packet.ReadULong();
+                _clientHwid = _packet.ReadString();
+
+                if (_clientHwid.Length < 50)
+                {
+                    ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.userNotFound);
+                    Server.clients[_fromClient].DisconnectUnregistered();
+                    return;
+                }
+
+                var _database = Program.GetMongoDatabase();
+                var _playerCollection = _database.GetCollection<BsonDocument>("Player");
+                var filter = Builders<BsonDocument>.Filter.Eq("_id", _clientHwid);
+                var _player = _playerCollection.Find(filter).FirstOrDefault();
+
+                try
+                {
+                    if (_player["banned"] == true)
+                    {
+                        Console.WriteLine($"Incoming connection is from a banned player: {_username}");
+                        ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.banned);
+                        Server.clients[_fromClient].DisconnectUnregistered();
+                        return;
+                    }
+                }
+                catch (Exception) {
+                    Server.clients[_fromClient].DisconnectUnregistered();
+                    ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.userNotFound);
+                    return;
+                }
 
                 if (_clientToken != Client.tokens[_fromClient])
                 {
@@ -36,8 +69,9 @@ namespace GameDevCAServer
                     Console.WriteLine("Client token matched!");
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 Server.clients[_fromClient].DisconnectUnregistered();
                 return;
             }
@@ -90,14 +124,15 @@ namespace GameDevCAServer
             Console.WriteLine($"\n\t{Server.clients[_fromClient].tcp.socket.Client.RemoteEndPoint} connected successfully.\n" +
                 $"\tPlayer ID: \t\t{_fromClient} \n" +
                 $"\tUsername: \t\t{_username} \n" +
-                $"\tClient version: \t{_clientVersion}\n"
+                $"\tClient version: \t{_clientVersion}\n" +
+                $"\tClient HWID: \t{_clientHwid}\n"
             );
 
             if (_fromClient != _clientIdCheck)
             {
                 Console.WriteLine($"Player \"{_username}\" (ID: {_fromClient}) has assumed the wrong client ID ({_clientIdCheck})!");
             }
-            Server.clients[_fromClient].SendIntoGame(_username);
+            Server.clients[_fromClient].SendIntoGame(_username, _clientHwid);
         }
 
         //This will handle the trusted client data and skip computation of player input on the server

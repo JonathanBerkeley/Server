@@ -9,6 +9,7 @@
         userNotFound,
         badArguments,
         invalidCommand,
-        badToken
+        badToken,
+        banned
     }
 }
