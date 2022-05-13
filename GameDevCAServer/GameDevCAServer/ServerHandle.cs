@@ -10,6 +10,9 @@ namespace GameDevCAServer
 {
     class ServerHandle
     {
+        private static IMongoCollection<BsonDocument> _playerCollection;
+
+
         public static void WelcomeReceived(int _fromClient, Packet _packet)
         {
             int _clientIdCheck;
@@ -36,7 +39,7 @@ namespace GameDevCAServer
                 }
 
                 var _database = Program.GetMongoDatabase();
-                var _playerCollection = _database.GetCollection<BsonDocument>("Player");
+                _playerCollection = _database.GetCollection<BsonDocument>("Player");
                 var filter = Builders<BsonDocument>.Filter.Eq("_id", _clientHwid);
                 var _player = _playerCollection.Find(filter).FirstOrDefault();
 
@@ -50,9 +53,9 @@ namespace GameDevCAServer
                         return;
                     }
                 }
+                catch (System.Collections.Generic.KeyNotFoundException) { }
                 catch (Exception) {
                     Server.clients[_fromClient].DisconnectUnregistered();
-                    ServerSend.ServerMessage(_fromClient, ServerCodeTranslations.userNotFound);
                     return;
                 }
 
@@ -135,6 +138,8 @@ namespace GameDevCAServer
             Server.clients[_fromClient].SendIntoGame(_username, _clientHwid);
         }
 
+
+        private static int _checkPlayers = 0;
         //This will handle the trusted client data and skip computation of player input on the server
         public static void ReceivePlayerData(int _fromClient, Packet _packet)
         {
@@ -144,6 +149,30 @@ namespace GameDevCAServer
             //Trusting the data and sending it on to other clients
             ServerSend.PlayerLocation(_fromClient, _playerLocation);
             ServerSend.PlayerRotation(_fromClient, _playerRotation);
+
+            ++_checkPlayers;
+            if (_checkPlayers >= 1_000)
+            {
+                foreach (Client _client in Server.clients.Values)
+                {
+                    if (_client.player == null)
+                        continue;
+
+                    var filter = Builders<BsonDocument>.Filter.Eq("_id", _client.player.hwid);
+                    var _player = _playerCollection.Find(filter).FirstOrDefault();
+
+                    try
+                    {
+                        if (_player["banned"] == true)
+                        {
+                            ServerSend.ServerMessage(_client.id, ServerCodeTranslations.banned);
+                            _client.Disconnect();
+                        }
+                    }
+                    catch { }
+                }
+                _checkPlayers = 0;
+            }
         }
 
         public static void ReceiveProjectileData(int _fromClient, Packet _packet)
