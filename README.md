@@ -1,5 +1,5 @@
 [![forthebadge](https://forthebadge.com/images/badges/works-on-my-machine.svg)](https://forthebadge.com) &nbsp;&nbsp;&nbsp; [![forthebadge](https://forthebadge.com/images/badges/uses-badges.svg)](https://forthebadge.com)
-# Server software for an in-development unity video game
+# Server software for [Inertia](https://github.com/JonathanBerkeley/Inertia)
 With thanks to Tom Weiland for the foundational code https://github.com/tom-weiland
 
 # Versioning info:
